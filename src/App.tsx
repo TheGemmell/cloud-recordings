@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [ lessons, setLessons ] = useState();
+  console.log(lessons)
+  useEffect(() => {
+    async function getLinks(range: string) {
+      let data = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/1ZfLVzYrXJcAARFfLzuYSEI1ylvT16CWeRwY4QFdf1fU/values/${range}?key=AIzaSyCJv-Xb0xp1n_qFvzf0dtqTp9dKtHdS7N4`)
+      data = await data.json();
+      console.log(data);
+      setLessons(data.values)
+    }
+    getLinks("A2:C800")
+  },[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
     </div>
   );
 }
