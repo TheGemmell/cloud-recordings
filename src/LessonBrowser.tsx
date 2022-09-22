@@ -28,46 +28,43 @@ const linksMockdata = [
 
 export default function LessonBrowser() {
   const { classes, cx } = useStyles();
-  const [active, setActive] = useState('Releases');
-  const [activeLink, setActiveLink] = useState('Settings');
+  const [activeWeek, setActiveWeek] = useState('Releases');
+  const [activeDay, setActiveDay] = useState('Settings');
 
   const mainLinks = mainLinksMockdata.map((link) => (
-      <UnstyledButton
-        onClick={() => setActive(link.label)}
-        className={cx(classes.mainLink, { [classes.mainLinkActive]: link.label === active })}
-      >
-        {link.week}
-      </UnstyledButton>
+    <UnstyledButton
+      onClick={() => setActiveWeek(link.label)}
+      className={cx(classes.mainLink, { [classes.mainLinkActive]: link.label === activeWeek })}
+    >
+      {link.week}
+    </UnstyledButton>
   ));
 
   const links = linksMockdata.map((link) => (
-    <a
-      className={cx(classes.link, { [classes.linkActive]: activeLink === link })}
-      href="/"
-      onClick={(event) => {
-        event.preventDefault();
-        setActiveLink(link);
-      }}
+    <a href="/"
       key={link}
+      className={cx(classes.link, { [classes.linkActive]: activeDay === link })}
+      onClick={(e) => {
+        e.preventDefault();
+        setActiveDay(link);
+      }}
     >
       {link}
     </a>
   ));
 
   return (
-    <Navbar height={750} width={{ sm: 300 }}>
+    <Navbar width={{ sm: 300 }}>
       <Navbar.Section grow className={classes.wrapper}>
         <div className={classes.aside}>
           <div className={classes.logo}>
-            {/* <MantineLogo type="mark" size={30} /> */}
           </div>
           {mainLinks}
         </div>
         <div className={classes.main}>
           <Title order={4} className={classes.title}>
-            {active}
+            {activeWeek}
           </Title>
-
           {links}
         </div>
       </Navbar.Section>
