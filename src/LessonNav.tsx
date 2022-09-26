@@ -4,6 +4,7 @@ import { useStyles } from './styling';
 
 const weekNums = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
 
+// @ts-ignore
 export default function LessonNav({activeDay, activeWeek, setActiveDay, setActiveWeek}) {
   const { classes, cx } = useStyles();
   const mainLinks = weekNums.map((link) => (
