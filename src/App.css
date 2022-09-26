@@ -22,3 +22,28 @@
     transform: rotate(360deg);
   }
 }
+
+.lesson-text {
+  margin-block: auto;
+  font-size: smaller;
+}
+
+.lesson-text:hover {
+  color: white;
+}
+
+.lesson {
+  display: inline-block;
+  border: 1px solid black;
+  margin: 1vw;
+  padding: 1.5%;
+}
+
+.lesson:hover {
+  background-color: black;
+}
+
+a {
+  text-decoration: none;
+
+}
