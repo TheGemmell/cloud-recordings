@@ -1,49 +1,30 @@
-import { useState } from 'react';
 import { Navbar, UnstyledButton, Title } from '@mantine/core';
+import { weekDays } from './lib';
 import { useStyles } from './styling';
 
-const mainLinksMockdata = [
-  { week: 1, label: 'Home' },
-  { week: 2, label: 'Dashboard' },
-  { week: 3, label: 'Analytics' },
-  { week: 4, label: 'Releases' },
-  { week: 5, label: 'Account' },
-  { week: 6, label: 'Security' },
-  { week: 7, label: 'Settings' },
-];
-
-const weekDays = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-];
+const weekNums = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
 
 export default function LessonNav({activeDay, activeWeek, setActiveDay, setActiveWeek}) {
-
   const { classes, cx } = useStyles();
-
-
-  const mainLinks = mainLinksMockdata.map((link) => (
+  const mainLinks = weekNums.map((link) => (
     <UnstyledButton
-      onClick={() => setActiveWeek(link.label)}
-      className={cx(classes.mainLink, { [classes.mainLinkActive]: link.label === activeWeek })}
+      onClick={() => setActiveWeek(link)}
+      className={cx(classes.mainLink, { [classes.mainLinkActive]: link === activeWeek })}
     >
-      {link.week}
+      {link}
     </UnstyledButton>
   ));
 
   const links = weekDays.map((link) => (
     <a href="/"
-      key={link}
-      className={cx(classes.link, { [classes.linkActive]: activeDay === link })}
+      key={link.day}
+      className={cx(classes.link, { [classes.linkActive]: activeDay === link.num })}
       onClick={(e) => {
         e.preventDefault();
-        setActiveDay(link);
+        setActiveDay(link.num);
       }}
     >
-      {link}
+      {link.day}
     </a>
   ));
 
@@ -57,7 +38,7 @@ export default function LessonNav({activeDay, activeWeek, setActiveDay, setActiv
         </div>
         <div className={classes.main}>
           <Title order={4} className={classes.title}>
-            {activeWeek}
+            {`Week ${activeWeek}`}
           </Title>
           {links}
         </div>
