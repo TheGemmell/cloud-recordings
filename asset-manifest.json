@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cloud-recordings/static/css/main.3d0b4350.css",
+    "main.js": "/cloud-recordings/static/js/main.cdc880f1.js",
+    "index.html": "/cloud-recordings/index.html",
+    "main.3d0b4350.css.map": "/cloud-recordings/static/css/main.3d0b4350.css.map",
+    "main.cdc880f1.js.map": "/cloud-recordings/static/js/main.cdc880f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3d0b4350.css",
+    "static/js/main.cdc880f1.js"
+  ]
+}
