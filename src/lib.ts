@@ -1,27 +1,37 @@
 const startDate = new Date(2022, 8, 5);
 
-interface LessonWeeks {
-  1?: string[][];
-  2?: string[][];
-  3?: string[][];
-  4?: string[][];
-  5?: string[][];
-  6?: string[][];
-  7?: string[][];
-  8?: string[][];
-  9?: string[][];
-  10?: string[][];
-  11?: string[][];
-  12?: string[][];
-  13?: string[][];
-  14?: string[][];
-  15?: string[][];
-  16?: string[][];
+const weekDays = [
+  { day: "Monday", num: 1 },
+  { day: "Tuesday", num: 2 },
+  { day: "Wednesday", num: 3 },
+  { day: "Thursday", num: 4 },
+  { day: "Friday", num: 5 }
+];
+
+export interface LessonWeeks {
+  1?: Lesson[];
+  2?: Lesson[];
+  3?: Lesson[];
+  4?: Lesson[];
+  5?: Lesson[];
+  6?: Lesson[];
+  7?: Lesson[];
+  8?: Lesson[];
+  9?: Lesson[];
+  10?: Lesson[];
+  11?: Lesson[];
+  12?: Lesson[];
+  13?: Lesson[];
+  14?: Lesson[];
+  15?: Lesson[];
+  16?: Lesson[];
 }
-interface Lesson {
+
+export interface Lesson {
   title: string;
   link: string;
   date: Date | string;
+  day: number;
 }
 
 function convertDate(dateStr: string): Date {
@@ -36,7 +46,7 @@ function convertWeekNo(date: Date) {
   return weekNo;
 }
 
-function prepareLinks(rawLinks: string[][]) {
+function prepareLinks(rawLinks: string[][]): LessonWeeks {
   const weeks: LessonWeeks | any = {};
 
   for (let i = 0; i < rawLinks.length; i++) {
@@ -45,31 +55,19 @@ function prepareLinks(rawLinks: string[][]) {
     const weekData = {
       title: rawLinks[i][1],
       date: rawLinks[i][0],
-      link: rawLinks[i][2]
-    }
+      link: rawLinks[i][2],
+      day: date.getDay()
+    } as Lesson;
+
     if (weeks[weekNo]) {
-      weeks[weekNo].push(weekData)
+      weeks[weekNo].push(weekData);
     } else {
-      weeks[weekNo] = [weekData]
+      weeks[weekNo] = [weekData];
     }
   }
 
   console.log(weeks)
+  return weeks
 }
 
-export { convertDate };
-
-let testData = [
-  [
-    "7/9/22",
-    "Intro To Zoom",
-    "https://google.com"
-  ],
-  [
-    "8/9/22",
-    "Intro to Slack",
-    "yoyoyoy"
-  ],
-]
-
-prepareLinks(testData);
+export { convertDate, weekDays, prepareLinks };
